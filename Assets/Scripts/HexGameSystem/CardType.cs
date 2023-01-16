@@ -8,6 +8,6 @@ namespace BoardSystem
 {
     public enum CardType
     {
-        Teleport, Line, Swing, Push
+        Teleport, Line, Swing, Push, Meteor
     }
 }

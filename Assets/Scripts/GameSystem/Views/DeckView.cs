@@ -12,7 +12,7 @@ public class DeckView : MonoBehaviour
         _cards.AddRange(FindObjectsOfType<CardView>());
 
         int counter = 0;
-        foreach (CardView c in _cards)
+        foreach (CardView card in _cards)
         {
             if (counter < _maxCardsInScene)
             {
@@ -20,9 +20,8 @@ public class DeckView : MonoBehaviour
             }
             else
             {
-                c.gameObject.SetActive(false);
+                card.gameObject.SetActive(false);
             }
-
         }
     }
 
@@ -43,11 +42,8 @@ public class DeckView : MonoBehaviour
                         _cards[i].gameObject.SetActive(true);
                         break;
                     }
-
                 }
-
             }
-
         }
     }
 }

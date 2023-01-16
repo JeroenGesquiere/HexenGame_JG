@@ -40,7 +40,10 @@ namespace HexGameSystem
                 {
                     _moveSet = new PushCard(_board, hovPos, playerPos);
                 }
-
+                else if (card.Type == CardType.Meteor)
+                {
+                    _moveSet = new MeteorCard(_board, hovPos, playerPos);
+                }
                 // else if new card comes here
             }
             

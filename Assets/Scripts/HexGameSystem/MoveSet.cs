@@ -53,9 +53,12 @@ namespace HexGameSystem
             {
                 if (Board.Pieces.TryGetValue(pos, out PieceView p))
                 {
-                    takenPieces.Add(p);
-                    positionTakenPieces.Add(pos);
-                    hasPieceTaken = true;
+                    if(p.Player == Player.Enemy)
+                    {
+                        takenPieces.Add(p);
+                        positionTakenPieces.Add(pos);
+                        hasPieceTaken = true;
+                    }                    
                 }
             }
 

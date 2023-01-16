@@ -29,7 +29,9 @@ namespace HexGameSystem.Cards
                 .SouthWest(1)
                 .West(1)
                 .NorthWest(1)
-                .ValidPositions());        }
+                .ValidPositions()
+                );
+        }
 
         public override void GetActionPositions(Position hoverPosition)
         {

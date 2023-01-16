@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum States
 {
-    Menu, Playing, Replay
+    Start, Play
 }
 
 public class StateMachine

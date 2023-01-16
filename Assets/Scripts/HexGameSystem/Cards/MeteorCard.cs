@@ -1,13 +1,15 @@
-using HexGameSystem;
-using System.Collections;
+﻿
+using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace HexGameSystem.Cards
+namespace HexGameSystem
 {
-    public class TeleportCard : MoveSet
+    public class MeteorCard : MoveSet
     {
-        public TeleportCard(Board board, Position hoverPos, Position playerPos) : base(board, hoverPos, playerPos)
+        public MeteorCard(Board board, Position hoverPos, Position playerPos) : base(board, hoverPos, playerPos)
         {
             GetValidpositions(HoverPosition);
         }
@@ -15,10 +17,20 @@ namespace HexGameSystem.Cards
         public override void GetActionPositions(Position hoverPosition)
         {
             ActionPositions.Clear();
-            if(!Board.Pieces.TryGetValue(hoverPosition, out PieceView p))
+            if (ValidPositions.Contains(hoverPosition))
             {
                 ActionPositions.Add(hoverPosition);
-            }            
+
+                ActionPositions.AddRange(new MoveSetHelper(hoverPosition, Board)
+                    .NorthEast(1)
+                    .East(1)
+                    .SouthEast(1)
+                    .SouthWest(1)
+                    .West(1)
+                    .NorthWest(1)
+                    .ValidPositions()
+                    );
+            }
         }
 
         public override void GetValidpositions(Position pos)
@@ -33,19 +45,6 @@ namespace HexGameSystem.Cards
         {
             GetValidpositions(playerPosition);
             return ValidPositions;
-        }
-
-        internal override bool Execute(Position playerpos, Position hoverPos)
-        {
-            var validPositions = Positions(playerpos);
-            if (!validPositions.Contains(hoverPos))
-            {
-                return false;
-            }
-
-            Board.Move(playerpos, hoverPos);     
-
-            return true;
         }
     }
 }
