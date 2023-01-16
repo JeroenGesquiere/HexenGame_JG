@@ -1,10 +1,7 @@
 ﻿using BoardSystem;
+using GameSystem.Views;
 using HexGameSystem.Cards;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HexGameSystem
 {
@@ -46,25 +43,25 @@ namespace HexGameSystem
                 }
                 // else if new card comes here
             }
-            
+
         }
-        public void GetActionPositions (Position hovPos)
+        public void GetActionPositions(Position hovPos)
         {
             _moveSet.GetActionPositions(hovPos);
         }
         internal MoveSet ValidPosition(CardView card, Position gridPosition, Position positionHover)
         {
-            GetValidPositions(card,positionHover,gridPosition);
-            
+            GetValidPositions(card, positionHover, gridPosition);
+
             return _moveSet;
         }
-        public bool DoAction(Position playerPos,Position hoverPos)
+        public bool DoAction(Position playerPos, Position hoverPos)
         {
-           if(!_moveSet.Execute(playerPos,hoverPos))
+            if (!_moveSet.Execute(playerPos, hoverPos))
             {
                 return false;
-            }           
-            
+            }
+
             return true;
         }
     }

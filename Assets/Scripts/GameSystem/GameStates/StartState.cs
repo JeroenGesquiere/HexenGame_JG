@@ -1,38 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GameSystem.Views;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartState : State 
+namespace GameSystem.GameStates
 {
-    private StartView _startView;
-    public override void OnEnter()
+    public class StartState : State
     {
-        var asyncOperation = SceneManager.LoadSceneAsync("Start", LoadSceneMode.Additive);
-        asyncOperation.completed += InitializeScene;
-    }
+        private StartView _startView;
+        public override void OnEnter()
+        {
+            var asyncOperation = SceneManager.LoadSceneAsync("Start", LoadSceneMode.Additive);
+            asyncOperation.completed += InitializeScene;
+        }
 
-    private void InitializeScene(UnityEngine.AsyncOperation obj)
-    {
-        _startView = GameObject.FindObjectOfType<StartView>();
-        if (_startView != null)
-            _startView.PlayClicked += OnPlayClicked;
-    }
+        private void InitializeScene(UnityEngine.AsyncOperation obj)
+        {
+            _startView = GameObject.FindObjectOfType<StartView>();
+            if (_startView != null)
+                _startView.PlayClicked += OnPlayClicked;
+        }
 
-    private void OnPlayClicked(object sender, EventArgs e)
-    {
-        StateMachine.MoveTo(States.Play);
-    }
+        private void OnPlayClicked(object sender, EventArgs e)
+        {
+            StateMachine.MoveTo(States.Play);
+        }
 
-    public override void OnExit()
-    {
-        if (_startView != null)
-            _startView.PlayClicked -= OnPlayClicked;
+        public override void OnExit()
+        {
+            if (_startView != null)
+                _startView.PlayClicked -= OnPlayClicked;
 
-        SceneManager.UnloadSceneAsync("Start");
+            SceneManager.UnloadSceneAsync("Start");
+        }
     }
 }
+
 

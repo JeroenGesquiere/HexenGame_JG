@@ -2,51 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeckView : MonoBehaviour
+namespace GameSystem.Views
 {
-    private List<CardView> _cards = new List<CardView>();
-
-    private int _maxCardsInScene = 5;
-    void Awake()
+    public class DeckView : MonoBehaviour
     {
-        _cards.AddRange(FindObjectsOfType<CardView>());
+        private List<CardView> _cards = new List<CardView>();
 
-        int counter = 0;
-        foreach (CardView card in _cards)
+        private int _maxCardsInScene = 5;
+        void Awake()
         {
-            if (counter < _maxCardsInScene)
+            _cards.AddRange(FindObjectsOfType<CardView>());
+
+            int counter = 0;
+            foreach (CardView card in _cards)
             {
-                counter++;
-            }
-            else
-            {
-                card.gameObject.SetActive(false);
+                if (counter < _maxCardsInScene)
+                {
+                    counter++;
+                }
+                else
+                {
+                    card.gameObject.SetActive(false);
+                }
             }
         }
-    }
 
 
-    public void DeactivateCard(CardView card)
-    {
-        if (_cards.Contains(card))
+        public void DeactivateCard(CardView card)
         {
-            _cards.Remove(card);
-            card.gameObject.SetActive(false);
-
-            if (_cards.Count >= 0)
+            if (_cards.Contains(card))
             {
-                for (int i = 0; i <= _cards.Count - 1; i++)
+                _cards.Remove(card);
+                card.gameObject.SetActive(false);
+
+                if (_cards.Count >= 0)
                 {
-                    if (_cards[i].isActiveAndEnabled == false)
+                    for (int i = 0; i <= _cards.Count - 1; i++)
                     {
-                        _cards[i].gameObject.SetActive(true);
-                        break;
+                        if (_cards[i].isActiveAndEnabled == false)
+                        {
+                            _cards[i].gameObject.SetActive(true);
+                            break;
+                        }
                     }
                 }
             }
         }
     }
 }
-
-
-

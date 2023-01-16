@@ -1,8 +1,6 @@
-﻿using System;
+﻿using BoardSystem;
+using GameSystem.Views;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace HexGameSystem.Cards
@@ -22,7 +20,7 @@ namespace HexGameSystem.Cards
         }
 
         public override void GetValidpositions(Position pos)
-        {            
+        {
             ValidPositions.AddRange(new MoveSetHelper(PlayerPosition, Board)
                 .NorthEast(1)
                 .East(1)
@@ -39,7 +37,7 @@ namespace HexGameSystem.Cards
             ActionPositions.Clear();
 
             if (ValidPositions.Contains(hoverPosition))
-                {
+            {
                 ActionPositions.Add(hoverPosition);
 
                 List<Position> neighbors = new List<Position>();
@@ -100,14 +98,14 @@ namespace HexGameSystem.Cards
 
                     Position to = new Position(p.GridPosition.Q + direction.x, p.GridPosition.R + direction.y);
 
-                    if(Board.IsValid(to))
+                    if (Board.IsValid(to))
                     {
                         Board.Move(positionMovePieces[indexPos], to);
                     }
                     else
                     {
                         Board.Take(positionMovePieces[indexPos]);
-                    }                    
+                    }
                 }
             }
 

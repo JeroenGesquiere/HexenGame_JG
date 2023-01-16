@@ -1,15 +1,12 @@
-﻿using System;
+﻿using BoardSystem;
+using GameSystem.Views;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace HexGameSystem
 {
     public abstract class MoveSet
     {
-
         public List<Position> ValidPositions { get; set; }
         public List<Position> ActionPositions { get; set; }
 
@@ -31,9 +28,7 @@ namespace HexGameSystem
 
         public abstract void GetValidpositions(Position pos);
 
-
         public abstract List<Position> Positions(Position playerPosition);
-
 
         internal virtual bool Execute(Position playerpos, Position hoverPos)
         {
@@ -53,12 +48,12 @@ namespace HexGameSystem
             {
                 if (Board.Pieces.TryGetValue(pos, out PieceView p))
                 {
-                    if(p.Player == Player.Enemy)
+                    if (p.Player == Player.Enemy)
                     {
                         takenPieces.Add(p);
                         positionTakenPieces.Add(pos);
                         hasPieceTaken = true;
-                    }                    
+                    }
                 }
             }
 

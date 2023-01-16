@@ -1,9 +1,8 @@
-using HexGameSystem;
-using System.Collections;
+using BoardSystem;
+using GameSystem.Views;
 using System.Collections.Generic;
-using UnityEngine;
 
-namespace HexGameSystem.Cards
+namespace HexGameSystem
 {
     public class TeleportCard : MoveSet
     {
@@ -15,10 +14,10 @@ namespace HexGameSystem.Cards
         public override void GetActionPositions(Position hoverPosition)
         {
             ActionPositions.Clear();
-            if(!Board.Pieces.TryGetValue(hoverPosition, out PieceView p))
+            if (!Board.Pieces.TryGetValue(hoverPosition, out PieceView p))
             {
                 ActionPositions.Add(hoverPosition);
-            }            
+            }
         }
 
         public override void GetValidpositions(Position pos)
@@ -43,7 +42,7 @@ namespace HexGameSystem.Cards
                 return false;
             }
 
-            Board.Move(playerpos, hoverPos);     
+            Board.Move(playerpos, hoverPos);
 
             return true;
         }

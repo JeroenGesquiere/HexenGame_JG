@@ -1,11 +1,8 @@
 ﻿
-using System;
+using BoardSystem;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace HexGameSystem
+namespace HexGameSystem.Cards
 {
     public class MeteorCard : MoveSet
     {

@@ -1,10 +1,8 @@
-﻿using System;
+﻿using GameSystem.Views;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace HexGameSystem
+namespace BoardSystem
 {
     public class PieceMovedventArgs : EventArgs
     {
@@ -127,7 +125,7 @@ namespace HexGameSystem
             {
                 return false;
             }
-            if(Pieces.ContainsValue(pieceView))
+            if (Pieces.ContainsValue(pieceView))
             {
                 return false;
             }

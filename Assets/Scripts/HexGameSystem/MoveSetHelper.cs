@@ -1,8 +1,7 @@
-﻿using System;
+﻿using BoardSystem;
+using GameSystem.Views;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace HexGameSystem
@@ -12,8 +11,6 @@ namespace HexGameSystem
         private List<Position> _positions = new List<Position>();
         private Position _currentposition;
         private Board _board;
-
-
 
         public MoveSetHelper(Position currentposition, Board board)
         {
@@ -25,16 +22,16 @@ namespace HexGameSystem
         public MoveSetHelper Everything()
         {
             TileView[] allTiles = GameObject.FindObjectsOfType<TileView>();
-            foreach(TileView pos in allTiles)
+            foreach (TileView pos in allTiles)
             {
                 _positions.Add(pos.GridPosition);
             }
             return this;
         }
 
-        public MoveSetHelper NorthEast (int maxSteps = int.MaxValue)
+        public MoveSetHelper NorthEast(int maxSteps = int.MaxValue)
         {
-            return Collect(new Vector2Int(1,-1), maxSteps);
+            return Collect(new Vector2Int(1, -1), maxSteps);
         }
         public MoveSetHelper East(int maxSteps = int.MaxValue)
         {
@@ -61,14 +58,13 @@ namespace HexGameSystem
             return _positions;
         }
 
-
         public MoveSetHelper Collect(Vector2Int direction, int maxSteps = int.MaxValue)
         {
             var currentStep = 0;
 
             var position = new Position(_currentposition.Q + direction.x, _currentposition.R + direction.y);
 
-            while(currentStep < maxSteps && _board.IsValid(position))
+            while (currentStep < maxSteps && _board.IsValid(position))
             {
                 _positions.Add(position);
 

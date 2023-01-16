@@ -1,19 +1,18 @@
-using HexGameSystem;
-using HexGameSystem.Cards;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using GameSystem.GameStates;
 using UnityEngine;
 
-public class GameLoop : MonoBehaviour
+namespace GameSystem
 {
-    private StateMachine _stateMachine;
-    void Start()
+    public class GameLoop : MonoBehaviour
     {
-        _stateMachine = new StateMachine();
-        _stateMachine.Register(States.Play, new PlayState());
-        _stateMachine.Register(States.Start, new StartState());
+        private StateMachine _stateMachine;
+        void Start()
+        {
+            _stateMachine = new StateMachine();
+            _stateMachine.Register(States.Play, new PlayState());
+            _stateMachine.Register(States.Start, new StartState());
 
-        _stateMachine.InitialState = States.Start;
+            _stateMachine.InitialState = States.Start;
+        }
     }
 }

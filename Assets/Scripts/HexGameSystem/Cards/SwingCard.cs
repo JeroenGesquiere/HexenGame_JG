@@ -1,12 +1,9 @@
-﻿using System;
+﻿using BoardSystem;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HexGameSystem.Cards
 {
-    class SwingCard: MoveSet
+    class SwingCard : MoveSet
     {
         public SwingCard(Board board, Position hoverPos, Position playerPos) : base(board, hoverPos, playerPos)
         {
@@ -21,7 +18,7 @@ namespace HexGameSystem.Cards
         }
 
         public override void GetValidpositions(Position pos)
-        {           
+        {
             ValidPositions.AddRange(new MoveSetHelper(PlayerPosition, Board)
                 .NorthEast(1)
                 .East(1)

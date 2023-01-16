@@ -8,6 +8,6 @@ namespace HexGameSystem
 {
     public enum Player
     {
-        Player,Enemy
+        Player, Enemy
     }
 }
